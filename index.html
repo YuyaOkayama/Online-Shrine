@@ -1,0 +1,84 @@
+<!DOCTYPE = html>
+<html lang = "ja">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset=utf-8>	
+	<title>web神社</title>
+	<h1 class = 'title'>web神社</h1>
+	<div class="ChangeElem_Btn_Content">
+	      <button class="ChangeElem_Btn">参拝</button>
+	      <button class="ChangeElem_Btn">おみくじ</button>
+	      <button class="ChangeElem_Btn">御守り</button>
+	      <button class="ChangeElem_Btn">絵馬</button>
+    </div>
+</head>
+<body>
+	<div>
+		<!-- 参拝画面 -->
+	  <div class="ChangeElem_Panel">
+	  	<p class="worship-cent">
+	  		<input type="button" value="二例二拍手一礼" onclick="onButtonClickWorship()" / id="Worship"><br>
+	  		<img src="pictures/hatsumoude_couple.png" title="pct_Worship"><br>
+	  	</p>
+	  </div>
+	  <!-- おみくじ画面 -->
+	  <div class="ChangeElem_Panel">
+	  	<p class="omikuji-cent">
+	  		<input type="button" value="おみくじを引く" onclick="onButtonClickOmikuji()" / id="omikuji">
+	  		<input type="button" value="おみくじを結ぶ" onclick="onButtonClickOmikujiTie()" / id="omikujiTie" disabled="disabled"><br>
+	  		<img src="pictures/syougatsu2_omijikuji2.png" title="pct_omikuji"><br>
+	  	</p>
+	  </div>
+	  <!-- 御守り画面 -->
+	  <div class="ChangeElem_Panel">実装中
+	  </div>
+	  <!-- 絵馬画面 -->
+	  <div class="ChangeElem_Panel">実装中
+	  </div>
+	</div>
+
+	<script type="text/javascript">
+		$(function () {
+		  /*初期表示*/
+		  $('.ChangeElem_Panel').hide();
+		  $('.ChangeElem_Panel').eq(0).show();
+		  $('.ChangeElem_Btn').eq(0).addClass('is-active');
+		  /*クリックイベント*/
+		  $('.ChangeElem_Btn').each(function () {
+		    $(this).on('click', function () {
+		      var index = $('.ChangeElem_Btn').index(this);
+		      $('.ChangeElem_Btn').removeClass('is-active');
+		      $(this).addClass('is-active');
+		      $('.ChangeElem_Panel').hide();
+		      $('.ChangeElem_Panel').eq(index).show();
+		    });
+		  });
+		});
+
+		$("#omikuji").live('click', function(){
+			var maxNum = 7, // 最大枚数
+    		rdm = Math.floor(Math.random()*(maxNum))+1;
+  			 $('.omikuji-cent').children('img').attr('src', 'pictures/omikuji' + rdm + '.png');
+  			 omikuji.disabled = true;
+  			 $('#omikujiTie').prop("disabled", false);
+		});
+
+		$("#omikujiTie").live('click', function(){
+			$('.omikuji-cent').children('img').attr('src', 'pictures/5a8cf804fb58a208d7a784e7c2c069d3_s.jpg');
+			omikujiTie.disabled = true;
+		});
+
+		$('#Worship').live('click', function(){
+			$('.worship-cent').children('img').attr('src', 'pictures/_20190106_174321.JPG');
+			Worship.disabled = true;
+		});
+	</script>
+</body>
+<footer>
+	<Hr Size="1">
+	<a href="https://twitter.com/yuyaokayama5516">お問い合わせ・ご要望はこちら（製作者Twitter：@YuyaOkayama5516）</a>
+	<p>当サイトは宗教法人の運営ではございません。</p>
+  	<p><small>&copy; copyright 2018 YuyaOkayama</small></p>
+</footer>
+</html>
